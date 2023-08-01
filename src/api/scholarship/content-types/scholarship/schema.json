@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scholarships",
+  "info": {
+    "singularName": "scholarship",
+    "pluralName": "scholarships",
+    "displayName": "Scholarship",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "University": {
+      "type": "string"
+    },
+    "requested_fee": {
+      "type": "biginteger"
+    },
+    "Semester": {
+      "type": "biginteger"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::student.student",
+      "inversedBy": "scholarships"
+    }
+  }
+}

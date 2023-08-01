@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students",
+  "info": {
+    "singularName": "student",
+    "pluralName": "students",
+    "displayName": "Student",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "University": {
+      "type": "string"
+    },
+    "actual_fee": {
+      "type": "biginteger"
+    },
+    "asacita_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::asacita-user.asacita-user",
+      "mappedBy": "student"
+    },
+    "scholarships": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::scholarship.scholarship",
+      "mappedBy": "student"
+    }
+  }
+}

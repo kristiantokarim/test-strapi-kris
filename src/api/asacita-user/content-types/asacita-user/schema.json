@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "asacita_users",
+  "info": {
+    "singularName": "asacita-user",
+    "pluralName": "asacita-users",
+    "displayName": "AsacitaUser",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Email": {
+      "type": "email"
+    },
+    "Password": {
+      "type": "password"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "student": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::student.student",
+      "inversedBy": "asacita_user"
+    }
+  }
+}
