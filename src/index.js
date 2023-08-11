@@ -5,15 +5,19 @@ const conditions = [
     displayName: 'lecturer-can-only-view-assigned-student',
     name: 'lecturer-can-only-view-assigned-student',
     async handler(user) {
-      const lecturers = await strapi.query('api::lecturer.lecturer').findMany({ where: { admin_user: user.id } });
       const students = await strapi.query('api::student.student').findMany({ 
         where: { "lecturer":  {
           admin_user: user.id
         } },
       });
-      // return {$or: [ { "lecturer.admin_user": user.id } ]}
-      // return { id: { $in: students.map(l => l.id)}}
-      return { "lecturer": { admin_user: { id: { $eq: user.id} } } }
+
+      // had to use this id check 1 by 1 due to this issue:
+      // https://github.com/strapi/strapi/issues/17622
+      // it's inefficient but it works 
+      // return { "lecturer": { admin_user: { id: { $eq: user.id} } } }
+      return { id: { $in: students.map(l => l.id)}}
+      
+      
     },
   },
   {
